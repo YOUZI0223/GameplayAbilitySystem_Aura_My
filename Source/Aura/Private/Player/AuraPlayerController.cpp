@@ -8,7 +8,16 @@ AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
 }
-
+void AAuraPlayerController::PlayerTick(float DeltaSeconds)
+{
+	Super::PlayerTick(DeltaSeconds);
+	CursorTrace();
+}
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+}
 void AAuraPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -46,3 +55,5 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(RightDirection,InputAxisVector.X);
 	}
 }
+
+
